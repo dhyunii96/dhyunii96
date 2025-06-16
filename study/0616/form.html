@@ -5,35 +5,40 @@
 
     <body>
         <form action="https://www.tmd.co.kr/join" method="past">
+            
             <label for="name">이름</label>
-            <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                placeholder="이름을 입력해주세요"
-                />
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="이름을 입력하세요"
+                    />
 
-            <br /> <br />
+            
+                    <br /><br />
 
+            
             <label for="email">이메일</label>
-            <input 
-                type="email" 
-                id="email" 
-                name="email"
-                placeholder="이메일을 입력해주세요"
-                />
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="이메일을 입력하세요"
+                    />
 
-            <br /> <br />
+            
+                    <br /><br />
 
+            
             <label for="password">비밀번호</label>
-            <input 
-                type="password" 
-                id="password" 
-                name="password"
-                placeholder="비밀번호를 입력해주세요"
-                />
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password"
+                    placeholder="비밀번호를 입력하세요"
+                    />
 
-            <br /> <br />
+                    <br /> <br />
 
             <input type="submit" value="전송" />
 
@@ -42,7 +47,82 @@
         <form action="" method="get">
             <fieldset>
                 <legend>개인 정보</legend>
-                <ul
+                <ul>
+                    
+                    <li>
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                    </li>
+                    
+                    <li>
+                        <label for="email">메일 주소2</label>
+                        <input type="email" id="email" name="email" placeholder="메일을 입력하세요">
+                    </li>
+                    
+                    <li>
+                        <label for="age">나이</label>
+                        <input type="text" id="age" name="age" min="0" max="200" placeholder="나이를 입력하세요">
+                    </li>
+                    
+                    <li>
+                        <label>
+                            <input type="checkbox" name="subscribe"> 구독하기1
+                        </label>
+                        <label>
+                            <input type="checkbox" name="subscribe"> 구독하기2
+                        </label>
+                        <label>
+                            <input type="checkbox" name="subscribe"> 구독하기3
+                        </label>
+                    </li>
+                    
+                    <li>
+                        <label>
+                            <input type="radio" name="gender">남자</label>
+                        <label>
+                            <input type="radio" name="gender">여자</label>
+                        <label>
+                            <input type="radio" name="gender">여자2</label>
+                        <label>
+                            <input type="radio" name="gender">여자3</label>
+                    </li>
+
+                    <li>
+                        <input type="file" name="file">
+                    </li>
+
+                    <li>
+                        <input type="date" name="date">
+                    </li>
+
+                    <li>
+                        <input type="range" name="range">
+                    </li>
+
+                    <li>
+                        <input type="color" name="color">
+                    </li>
+
+                    <li>
+                        <label for="country">Select your country</label>
+                        <select name="country" id="country">
+                            <option value="usa">미국</option>
+                            <option value="japan">일본</option>
+                            <option value="china">중국</option>
+                            </select>
+                    </li>
+
+                    <li>
+                        <label for="message">Your Message:</label>
+                        <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Enter your message here..."
+                        ></textarea>
+                    </li>
+
+
+                </ul>
             </fieldset>
         
     </body>
