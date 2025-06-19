@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Selector</title>
+    <style>
+        div p{
+            color: skyblue;
+        }
+
+        img[src^="image"]{
+            color: aquamarine;
+            background-color: blueviolet;
+        }
+
+        input:hover{
+            background-color: red;
+        }
+
+        input:focus{
+            background-color: blue;
+        }
+
+        input:active{
+            background-color: yellow;
+        }
+
+        p:nth-child(odd){
+            background-color: gray;
+        }
+
+        p:nth-child(even){
+            background-color: darkcyan;
+        }
+
+        p:first-child{
+            background-color: brown;
+        } 
+
+        p:last-child{
+            background-color: blue;
+        }
+
+        p:nth-last-child(4n+5){
+            background-color: purple;
+        }
+
+
+    </style>
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>
+        <strong>제목 강조</strong>
+      </h1>
+      <img src="image.jpg" alt="예시 이미지" />
+      <div>
+        <p><strong>첫 번째 단락 강조</strong></p>
+        <p><strong>두 번째 단락 강조</strong></p>
+        <p><strong>세 번째 단락 강조</strong></p>
+        <input type="text">
+        <p><strong>네 번째 단락 강조</strong></p>
+        <p><strong>다섯 번째 단락 강조</strong></p>
+        <p><strong>여섯 번째 단락 강조</strong></p>
+      </div>
+    </section>
+  </body>
+</html>
