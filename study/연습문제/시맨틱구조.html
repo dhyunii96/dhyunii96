@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+        <title>시맨틱 태그로 웹 페이지 구조 만들기</title>
+        <style>
+            header{
+                text-align: center;
+                color: purple;
+                width: 100vw;
+
+            }
+
+            main{
+                display: flex;
+                gap: 5rem;
+            }
+            
+            article {
+                display: flex;
+            }
+
+            section{
+                background-color: azure;
+                padding: 20px;
+            }
+            
+            nav{
+                background-color: lightpink;
+                width: 15%;
+                height: 30vh;
+                left: auto;
+
+            }
+
+            footer{
+                font-size: x-small;
+                text-align: center;
+                width: 100vw;
+            }
+
+
+        </style>
+
+    </head>
+    <body>
+        <header>
+            <h1>배고파</h1>
+            <p>저녁메뉴 고르기</p>
+        </header>
+
+        <main>
+            <nav>
+            <ul>
+                <li>
+                    <a href="#">한식</a>
+                </li>
+                <li>
+                    <a href="#">일식</a>
+                </li>
+                <li>
+                    <a href="#">중식</a>
+                </li>
+                <li>
+                    <a href="#">양식</a>
+                </li>
+            </ul>
+            </nav>
+
+            <article>
+
+                <section>
+                    <h2>한식</h2>
+                    <p>불고기 비빔밥</p>
+                </section>
+                
+                <section>
+                    <h2>일식</h2>
+                    <p>초밥 라멘</p>
+                </section>
+                
+                <section>
+                    <h2>중식</h2>
+                    <p>짜장면 탕수육</p>
+                </section>
+                
+                <section>
+                    <h2>양식</h2>
+                    <p>스테이크  파스타</p>
+                </section>
+            </article>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 all rights reseved</p>
+        </footer>
+    </body>
+</html>

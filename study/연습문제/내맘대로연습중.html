@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내맘대로 연습중</title>
+    <style>
+        body{
+            background-color: lightblue;
+        }
+
+        fieldset{
+            background-color: aquamarine;
+        }
+
+        input{
+            background-color: bisque;
+        }
+
+        legend{
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>
+                <a href="https://usastore.psg.fr/ko/">
+                    <img src="https://upload.wikimedia.org/wikipedia/ko/d/d1/%ED%8C%8C%EB%A6%AC_%EC%83%9D%EC%A0%9C%EB%A5%B4%EB%A7%B9_FC_%EB%A1%9C%EA%B3%A0.svg" alt="psg스토어" width="70">
+                </a>                    
+            </legend>
+
+            <ul>
+                <li>
+                    <label for="name">이름</label>
+                    <input 
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="이름 입력란"
+                    >
+                </li>
+
+                <li>                
+                    <label for="email">이메일</label>
+                    <input 
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="이메일 입력란"
+                    >
+                </li>
+                
+                <li>
+                    <label for="age">나이</label>
+                    <input 
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="나이 입력란"
+                    >
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" name="subscribe"> 구독하기1
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="subscribe"> 구독하기2
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="subscribe"> 구독하기3
+                    </label>
+                </li>
+                
+                <li>
+                    <label>
+                        <input type="radio" name="gender">남자
+                        <input type="radio" name="gender">여자
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="file" name="file">
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="date" name="date">
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="range" name="range">
+                    </label>
+                </li>
+
+                <li>
+                    <label for="country">나라선택</label>
+                    <select name="country" id="country">
+                        <option value="korea">한국</option>
+                        <option value="usa">미국</option>
+                        <option value="japan">일본</option>
+                        <option value="china">중국</option>
+                        <option value="india">인도</option>
+                    </select>
+                </li>
+                
+            </ul>
+          
+
+    </form>
+
+        
+    
+
+</body>
+</html>
