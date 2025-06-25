@@ -4,7 +4,7 @@
 // document.write("<h1>Documet Write</h1>");
 
 // let currentYear = 2025;
-// let birthYear = prompt;
+// let birthYear = prompt("태어난 해를 입력하세요:");
 // let age = currentYear - birthYear + 1;
 // alert("당신의 나이는" + age + "살 입니다.");
 

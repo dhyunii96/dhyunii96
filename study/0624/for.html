@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For 예제</title>
+</head>
+<body>
+    <script>
+        // 구구단 출력
+        // console.log(`구구단 출력`)
+        // for(let i = 1; i <= 9; i++) {
+        //     console.log(`${i} 단`);
+        //     for(let j = 1; j <= 9; j++){
+        //         console.log(`${i} * ${j} = ${i*j}`);
+        //     }
+        //     console.log();
+        // }
+
+        // 별찍기
+        // for (let i = 0; i < 5; i++) {
+        //     console.log("*".repeat(i + 1))
+        // }
+
+        // let star = "";
+        // for (let i = 0; i < 5; i++) {
+        //     star = star + "*"
+        //     console.log(star);
+        // }
+
+        const num = prompt("숫자를 입력하시오:");
+        let mark = "";
+        for (let i = 1; i <= num; i++) {
+        for (let j = 1; j <= i; j++) {
+          mark += "*";
+        }
+        mark += "<br>";
+      }
+
+      document.write(mark);
+
+        // for (let i = 0; i < 5; i++) {
+        //     for(let j = 0; j <= i; j++) {
+        //         document.write('*')
+        //     }
+        //     document.write('<br>')
+        // }
+    </script>
+</body>
+</html>
