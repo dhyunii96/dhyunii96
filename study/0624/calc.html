@@ -14,51 +14,52 @@
             return a + b;
         }
 
-        const add2 = function (a, b) {
+        const add2 = function(a, b) {
             return a + b;
         }
 
         // 빼기 함수
-        function sub(a, b){
+        function subtract(a, b){
             return a - b;
         }
 
-        const sub2(a, b) {
+        const subtract2 = function(a, b) {
             return a - b
         }
 
 
         // 곱하기 함수
-        function mul(a, b){
+        function multply(a, b){
             return a * b;
         }
 
-        const mul2(a, b) {
+        const multply2 = function(a, b) {
             return a * b;
         }
 
 
         // 나누기 함수
-        function div(a, b){
+        function divide(a, b){
             return a / b;
         }
 
-        const div2(a, b) {
+        const divide2 = function(a, b) {
             return a / b;
         }
 
 
         // 나머지 함수
-        function rem(a, b){
+        function remainder(a, b){
             return a % b;
         }
 
-        const rem2(a, b) {
+        const remainder2 = function(a, b) {
             return a % b;
         }
 
 
 
+        // 사용자 입력 받기
 
         const num1 = Number(prompt("첫 번째 숫자를 입력하세요"));
         const operator = prompt("연산자를 입력하세요");
@@ -68,12 +69,18 @@
         if (operator === "+") {
             result = add(num1, num2);
         } else if (operator === "-") {
-            result = sub(num1, num2);
+            result = subtract(num1, num2);
         } else if (operator === "*") {
-            result = mul(num1, num2);
+            result = multply(num1, num2);
         } else if (operator === "/") {
-            result = div(num1, num2);
+            result = divide(num1, num2);
+        } else if (operator === "%") {
+            result = remainder(num1, num2);
+        } else {
+            result = "잘못된 연산자";
         }
+
+        console.log(`${num1} ${operator} ${num2} = ${result}`)
 
 
 
