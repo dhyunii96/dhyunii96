@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별그리기</title>
+    <style></style>
+</head>
+<body>
+    <script>
+        // 별그리기
+
+        // printRightStars(5);
+
+        for (let i = 1; i <= 5; i++) {
+            let space = " ".repeat(5 - i);
+            let star = "*".repeat(i);
+            console.log(space + star)
+        }
+
+
+        // printPyramid(4);
+
+        for (let i = 0; i <= 3; i++) {
+            let space = " ".repeat(3 - i);
+            let star = "*".repeat(2 * i + 1);
+            console.log(space + star + space)
+        }
+    </script>
+</body>
+</html>
