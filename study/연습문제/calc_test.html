@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>완성 계산기</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      width: 300px;
+    }
+
+    .display {
+      height: 60px;
+      font-size: 24px;
+      background: #222;
+      color: #fff;
+      text-align: right;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    .equal {
+      background-color: #4CAF50;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .operator {
+      background-color: #f4a261;
+      color: white;
+    }
+
+    .utility {
+      background-color: #e76f51;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+    <div id="buttons" class="buttons">
+      <button class="utility" id="clear">C</button>
+      <button class="utility" id="backspace">←</button>
+      <button class="utility" id="percent">%</button>
+      <button class="operator" id="divide">/</button>
+
+      <button id="seven">7</button>
+      <button id="eight">8</button>
+      <button id="nine">9</button>
+      <button class="operator" id="multiply">*</button>
+
+      <button id="four">4</button>
+      <button id="five">5</button>
+      <button id="six">6</button>
+      <button class="operator" id="subtract">-</button>
+
+      <button id="one">1</button>
+      <button id="two">2</button>
+      <button id="three">3</button>
+      <button class="operator" id="add">+</button>
+
+      <button id="zero">0</button>
+      <button id="dot">.</button>
+      <button id="equal" class="equal">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const buttons = document.getElementById("buttons");
+
+    function updateDisplay(value) {
+      if (display.textContent === "0") {
+        display.textContent = value;
+      } else {
+        display.textContent += value;
+      }
+    }
+
+    function calculate() {
+      try {
+        const result = eval(display.textContent);
+        display.textContent = result;
+      } catch {
+        display.textContent = "Error";
+      }
+    }
+
+    buttons.addEventListener("click", (e) => {
+      const btn = e.target;
+      const value = btn.innerText;
+
+      if (btn.tagName !== "BUTTON") return;
+
+      switch (btn.id) {
+        case "clear":
+          display.textContent = "0";
+          break;
+        case "backspace":
+          display.textContent = display.textContent.slice(0, -1) || "0";
+          break;
+        case "percent":
+          try {
+            display.textContent = String(eval(display.textContent) / 100);
+          } catch {
+            display.textContent = "Error";
+          }
+          break;
+        case "equal":
+          calculate();
+          break;
+        default:
+          updateDisplay(value);
+      }
+    });
+
+    // 키보드 입력 처리
+    document.addEventListener("keydown", function (e) {
+      const key = e.key;
+
+      if (/[0-9+\-*/.%]/.test(key)) {
+        updateDisplay(key);
+      } else if (key === "Enter") {
+        e.preventDefault();
+        calculate();
+      } else if (key === "Backspace") {
+        display.textContent = display.textContent.slice(0, -1) || "0";
+      } else if (key === "Escape") {
+        display.textContent = "0";
+      } else if (key === "=") {
+        e.preventDefault();
+        calculate();
+      }
+    });
+  </script>
+</body>
+</html>

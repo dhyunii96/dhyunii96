@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피라미드 별그리기</title>
+</head>
+<body>
+    <script>
+        // for(let i = 3; i >= 0; i--) {
+        //     let space = ' '.repeat(3 - i);
+        //     let star = '*'.repeat(i * 2 + 1);
+        //     console.log(space, star, space);
+        // }
+
+        function printInvertedPyramid(n) {
+            for(let i = n; i > 0; i--) {
+                const start = n - i;
+                const count = n * 2 - 1;
+                printStars(start, count);
+            }
+        }
+
+        // function printInvertedPyramid(n) {
+        //     for (let i = n; )
+        // }
+    </script>
+</body>
+</html>
