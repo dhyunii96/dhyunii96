@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 백과</title>
+    <style>
+        /* Google Fonts 'Poppins' 폰트 가져오기 */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        /* 색상 변수 선언으로 유지보수 용이성 확보 */
+        :root {
+            --bg-color: #1a1a1a;
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --card-bg-color: #2c2c2c;
+            --text-color: #f0f2f5;
+            --text-secondary-color: #a9a9a9;
+            --border-color: #444;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        /* 버튼 공통 스타일 */
+        .category-buttons button,
+        .routine-buttons button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px; /* 둥근 버튼 */
+            cursor: pointer;
+            background: linear-gradient(145deg, var(--primary-color), var(--primary-hover-color));
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+
+        .category-buttons button:hover,
+        .routine-buttons button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .exercise-list {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* 운동 아이템 카드 스타일 */
+        .exercise-item {
+            padding: 15px 25px;
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .exercise-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+        
+        /* 활성화된 운동 아이템 스타일 */
+        .exercise-item.active {
+            background-color: var(--primary-color);
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* 운동 상세 정보 스타일 */
+        .exercise-detail {
+            margin: 30px auto;
+            padding: 25px;
+            background-color: var(--card-bg-color);
+            border-radius: 15px;
+            display: none;
+            max-width: 600px;
+            border-left: 5px solid var(--primary-color);
+            text-align: left;
+        }
+
+        .exercise-detail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        hr {
+          border: 0;
+          height: 1px;
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
+          margin: 60px 0;
+        }
+
+        /* 새로운 루틴 결과 그리드 스타일 */
+        .routine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            padding: 0 10%;
+        }
+        
+        /* 루틴 날짜별 카드 스타일 */
+        .routine-day-card {
+            background-color: var(--card-bg-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            text-align: left;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .routine-day-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 휴식일 카드 특별 스타일 */
+        .routine-day-card.rest-day {
+            background-color: #222;
+            border-top-color: var(--text-secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 200px;
+        }
+        
+        .routine-day-card h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        
+        .routine-day-card .day-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .routine-day-card .rest-day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-secondary-color);
+        }
+        
+        .routine-day-card ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .routine-day-card ul li {
+            background-color: var(--bg-color);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>운동 백과</h1>
+
+    <div class="category-buttons">
+        <button onclick="showExercises('가슴')">가슴 운동</button>
+        <button onclick="showExercises('어깨')">어깨 운동</button>
+        <button onclick="showExercises('등')">등 운동</button>
+        <button onclick="showExercises('하체')">하체 운동</button>
+        <button onclick="showExercises('코어')">코어 운동</button>
+    </div>
+
+    <div id="exerciseList" class="exercise-list"></div>
+    <div id="exerciseDetail" class="exercise-detail"></div>
+
+    <hr>
+
+    <div class="routine-buttons">
+        <button onclick="showRoutine(2)">2분할 루틴</button>
+        <button onclick="showRoutine(3)">3분할 루틴</button>
+        <button onclick="showRoutine(4)">4분할 루틴</button>
+    </div>
+    
+    <div id="routineResult" class="routine-grid"></div>
+
+    <script>
+        const routines = {
+            '가슴': ['벤치프레스', '펙덱 플라이', '체스트 프레스 머신', '푸쉬업', '딥스', '인클라인 벤치프레스'],
+            '어깨': ['숄더프레스', '사이드 레터럴레이즈', '프론트레이즈', '오버헤드 프레스', '페이스 풀'],
+            '등': ['랫풀다운', '바벨로우', '풀업', '시티드 로우', 'T바 로우', '데드리프트'],
+            '하체': ['스쿼트', '런지', '레그프레스', '레그익스텐션', '레그 컬', '힙 스러스트'],
+            '코어': ['플랭크', '레그레이즈', '크런치', '러시안 트위스트']
+        };
+
+        const details = {
+      '벤치프레스': '가슴 전체, 특히 중간 부위를 키우는 대표적인 복합 운동입니다.',
+      '펙덱 플라이': '기구를 이용하여 가슴 근육을 집중적으로 수축시키는 머신 운동입니다.',
+      '체스트 프레스 머신': '가슴 운동을 보다 쉽게 접근할 수 있도록 도와주는 머신 기반 운동입니다.',
+      '푸쉬업': '맨몸으로 가슴과 삼두근, 코어를 함께 단련하는 기초 운동입니다.',
+      '딥스': '가슴 하부와 삼두근, 어깨 전면을 강하게 자극하는 체중 운동입니다.',
+      '인클라인 벤치프레스': '벤치 각도를 세워 가슴 상부를 집중적으로 자극하는 프레스 운동입니다.',
+      '숄더프레스': '어깨 전면과 측면을 강화하는 가장 기본적인 어깨 프레스 운동입니다.',
+      '사이드 레터럴레이즈': '양팔을 양옆으로 들어 어깨 측면 삼각근을 집중 자극합니다.',
+      '프론트레이즈': '팔을 앞쪽으로 들어올리며 어깨 전면 삼각근을 자극하는 운동입니다.',
+      '오버헤드 프레스': '바벨이나 덤벨을 머리 위로 들어올려 어깨 전체를 자극하는 고전적인 운동입니다.',
+      '페이스 풀': '케이블이나 밴드를 얼굴 쪽으로 당겨 어깨 후면과 상부 등을 강화하는 운동입니다.',
+      '랫풀다운': '기구에서 바를 가슴 쪽으로 당기며 광배근을 발달시키는 머신 운동입니다.',
+      '바벨로우': '상체를 숙인 상태에서 바벨을 끌어당겨 등 중심부를 강화하는 운동입니다.',
+      '풀업': '자신의 체중을 이용해 등 근육과 팔을 단련하는 고강도 맨몸 운동입니다.',
+      '시티드 로우': '앉아서 케이블을 당기는 동작으로 등 전체, 특히 능형근과 중간 승모근을 자극합니다.',
+      'T바 로우': 'T자형 바벨을 당기며 등 두께감을 키우는 데 효과적인 운동입니다.',
+      '데드리프트': '전신을 사용하는 대표 복합 운동으로, 특히 척추기립근과 광배근을 강화합니다.',
+      '스쿼트': '하체 전체를 강화하는 대표 운동으로 대퇴사두근, 둔근, 햄스트링을 모두 자극합니다.',
+      '런지': '한 다리씩 전진하며 하체 근육을 개별적으로 단련하는 균형 중심 운동입니다.',
+      '레그프레스': '기구에 발을 밀어내는 동작으로 대퇴사두근과 둔근에 자극을 줍니다.',
+      '레그익스텐션': '허벅지 앞쪽 대퇴사두근을 고립시켜 자극하는 머신 운동입니다.',
+      '레그 컬': '다리를 굽히며 허벅지 뒤쪽 햄스트링을 강화하는 운동입니다.',
+      '힙 스러스트': '엉덩이를 들어올려 둔근을 집중적으로 강화하는 엉덩이 운동입니다.',
+      '플랭크': '팔꿈치와 발끝으로 몸을 지지하며 복부와 척추 안정화 근육을 강화합니다.',
+      '레그레이즈': '누운 자세에서 다리를 들어올려 하복부를 집중 자극하는 운동입니다.',
+      '크런치': '상체를 들어올려 복직근을 자극하는 기본적인 복근 운동입니다.',
+      '러시안 트위스트': '상체를 비틀어 복사근(옆구리)을 집중적으로 자극하는 회전 운동입니다.'
+    };
+
+        const images = {
+  // 가슴
+  '벤치프레스': 'src/benchpress.gif',
+  '펙덱 플라이': 'src/pecdeck.gif',
+  '체스트 프레스 머신': 'src/chestpress.gif',
+  '푸쉬업': 'src/pushup.gif',
+  '딥스': 'src/dips.gif',
+  '인클라인 벤치프레스': 'src/incline_benchpress.gif',
+
+  // 어깨
+  '숄더프레스': 'src/shoulderpress.gif',
+  '사이드 레터럴레이즈': 'src/side_lateral_raise.gif',
+  '프론트레이즈': 'src/front_raise.gif',
+  '오버헤드 프레스': 'src/overhead_press.gif',
+  '페이스 풀': 'src/face_pull.gif',
+
+  // 등
+  '랫풀다운': 'src/latpulldown.gif',
+  '바벨로우': 'src/barbell_row.gif',
+  '풀업': 'src/pullup.gif',
+  '시티드 로우': 'src/seated_row.gif',
+  'T바 로우': 'src/tbar_row.gif',
+  '데드리프트': 'src/deadlift.gif',
+
+  // 하체
+  '스쿼트': 'src/squat.gif',
+  '런지': 'src/lunge.gif',
+  '레그프레스': 'src/leg_press.gif',
+  '레그익스텐션': 'src/leg_extension.gif',
+  '레그 컬': 'src/leg_curl.gif',
+  '힙 스러스트': 'src/hip_thrust.gif',
+
+  // 코어
+  '플랭크': 'src/plank.gif',
+  '레그레이즈': 'src/leg_raise.gif',
+  '크런치': 'src/crunch.gif',
+  '러시안 트위스트': 'src/russian_twist.gif'
+};
+        
+        function showExercises(category) {
+            const listDiv = document.getElementById('exerciseList');
+            const detailDiv = document.getElementById('exerciseDetail');
+            listDiv.innerHTML = '';
+            detailDiv.style.display = 'none';
+
+            routines[category].forEach(ex => {
+                const item = document.createElement('div');
+                item.className = 'exercise-item';
+                item.innerText = ex;
+                item.onclick = () => {
+                    document.querySelectorAll('.exercise-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+
+                    const description = details[ex] || '설명 준비 중입니다.';
+                    const imageSrc = images[ex] || 'https://via.placeholder.com/300x200.gif?text=No+Image';
+                    detailDiv.innerHTML = `<img src="${imageSrc}" alt="${ex}" /><p>${description}</p>`;
+                    detailDiv.style.display = 'block';
+                };
+                listDiv.appendChild(item);
+            });
+        }
+
+        function getRandomFrom(categoryList, count, used = new Set()) {
+            if (!categoryList || categoryList.length === 0 || !routines[categoryList[0]]) {
+              return [];
+            }
+            const all = categoryList.flatMap(cat => routines[cat] || []);
+            const filtered = all.filter(ex => !used.has(ex));
+            const result = [];
+            while (result.length < count && filtered.length > 0) {
+                const idx = Math.floor(Math.random() * filtered.length);
+                const choice = filtered.splice(idx, 1)[0];
+                result.push(choice);
+                used.add(choice);
+            }
+            return result;
+        }
+    
+        function generateRoutine(splitType) {
+            const output = [];
+            const usedExercises = new Set();
+            if (splitType === 2) {
+                for (let i = 0; i < 6; i++) {
+                    const isUpper = i % 2 === 0;
+                    const title = isUpper ? '상체' : '하체';
+                    const categories = isUpper ? ['어깨', '등', '가슴'] : ['하체', '코어'];
+                    const dayExercises = getRandomFrom(categories, 3, usedExercises);
+                    output.push({ day: i + 1, title: title, exercises: dayExercises, isRest: false });
+                }
+                output.push({ day: 7, isRest: true });
+            } else if (splitType === 3) {
+                const patterns = [
+                    { title: '가슴+어깨', cats: ['가슴', '어깨'] },
+                    { title: '등+어깨', cats: ['등', '어깨'] },
+                    { title: '하체+코어', cats: ['하체', '코어'] }
+                ];
+                for (let i = 0; i < 6; i++) {
+                    const group = patterns[i % 3];
+                    const dayExercises = getRandomFrom(group.cats, 3, usedExercises);
+                    output.push({ day: i + 1, title: group.title, exercises: dayExercises, isRest: false });
+                }
+                output.push({ day: 7, isRest: true });
+            } else if (splitType === 4) {
+                const plan = ['가슴', '등', '하체', '어깨', '코어'];
+                let workoutDayIndex = 0;
+                for (let i = 0; i < 7; i++) {
+                    if (i === 2 || i === 6) { // 수, 일 휴식
+                        output.push({ day: i + 1, isRest: true });
+                    } else {
+                        const category = plan[workoutDayIndex % plan.length];
+                        const dayExercises = getRandomFrom([category], 4, usedExercises);
+                        output.push({ day: i + 1, title: category, exercises: dayExercises, isRest: false });
+                        workoutDayIndex++;
+                    }
+                }
+            }
+            return output;
+        }
+
+        function showRoutine(split) {
+            const routineData = generateRoutine(split);
+            const resultDiv = document.getElementById('routineResult');
+            resultDiv.innerHTML = '';
+
+            routineData.forEach(dayInfo => {
+                const card = document.createElement('div');
+                card.className = 'routine-day-card';
+
+                if (dayInfo.isRest) {
+                    card.classList.add('rest-day');
+                    card.innerHTML = `<h3 class="rest-day-title">Day ${dayInfo.day}</h3><p style="font-size: 1.5rem;">☕</p><h3>휴식</h3>`;
+                } else {
+                    const exercisesHtml = dayInfo.exercises.map(ex => `<li>${ex}</li>`).join('');
+                    card.innerHTML = `
+                        <h3>Day ${dayInfo.day}</h3>
+                        <p class="day-title">${dayInfo.title}</p>
+                        <ul>${exercisesHtml.length > 0 ? exercisesHtml : '<li>운동을 모두 완료했습니다!</li>'}</ul>
+                    `;
+                }
+                resultDiv.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
