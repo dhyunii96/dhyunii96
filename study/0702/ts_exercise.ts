@@ -28,3 +28,27 @@ function shoewLength(input: string | number) {
         console.log("문자열이 아닙니다");
     }
 }
+
+// 1. 문자열 변수 선언
+let name2: string = "Alice";
+
+// 2. 숫자와 boolean 타입
+let age: number = 30;
+let isActive: boolean = true;
+
+// 3. 함수 매개변수와 반환 타입
+function add(x: number, y: number): number {
+    return x + y;
+}
+
+// 4. 배열 타입
+let scores: number[] = [90, 85, 78];
+
+// 5. 객체 타입 정의
+let person: { name: string; age: number } = {
+    name: "Bob",
+    age: 25
+};
+
+// 6. 유니언 타입
+let id: number | string = "user123";
