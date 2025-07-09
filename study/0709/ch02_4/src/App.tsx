@@ -4,6 +4,7 @@ import "./App.css";
 import EventListener from "./pages/EventListener";
 import ReactOnClick from "./pages/ReactOnClick";
 import EventBubbling from "./pages/EventBubbling";
+import FileInput from "./pages/FileInput";
 
 // export default function App() {
 //   // const texts = [<p key="1">hello</p>, <p key="1">world</p>];
