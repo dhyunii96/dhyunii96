@@ -1,13 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 import * as D from "./data";
 import { Component } from "react";
-import ClassComponent from './ClassComponent';
+import ClassComponent from "./ClassComponent";
 
-function App() {
-  console.log("App called.");
-  return <h1>Hello World!!!</h1>;
-}
+// export default class App extends Component {
+//   render() {
+//     return (
+//       <ul>
+//         <ClassComponent href="https://www.google.com" text="go to Google" />
+//         <ClassComponent href="https://www.twitter.com" text="go to Twitter" />
+//       </ul>
+//     );
+//   }
+// }
+
+// export default function App() {
+//   return (
+//     <ul>
+//       <ClassComponent href="https://www.google.com" text="go to Google" />
+//       <ClassComponent href="https://www.twitter.com" text="go to Twitter" />
+//     </ul>
+//   );
+// }
+
+const App = () => {
+  return (
+    <ul>
+      <ClassComponent href="https://www.google.com" text="go to Google" />
+      <ClassComponent href="https://www.twitter.com" text="go to Twitter" />
+    </ul>
+  );
+};
 
 export default App;
