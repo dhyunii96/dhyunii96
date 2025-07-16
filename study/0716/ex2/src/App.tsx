@@ -1,15 +1,14 @@
 import GreetingPage from "./pages/GreetingPage";
-import ProductListPage from "./pages/ProductListPage";
+import ProductListpage from "./pages/ProductListPage";
 import QuotePage from "./pages/QuotePage";
-import ApplyScrapPage from "./pages/ApplyScrapPage";
-
-export default function App() {
+function App() {
   return (
-    <div>
+    <main>
       <GreetingPage />
-      <ProductListPage/>
-      <QuotePage/>
-      <ApplyScrapPage/>
-    </div>
+      <ProductListpage />
+      <QuotePage />
+    </main>
   );
-} 
+}
+
+export default App;
