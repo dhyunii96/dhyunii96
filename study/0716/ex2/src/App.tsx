@@ -12,6 +12,4 @@ export default function App() {
       <ApplyScrapPage/>
     </div>
   );
-}
-
-import "@fontsource/material-icons";
+} 
