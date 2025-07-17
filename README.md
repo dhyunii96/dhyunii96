@@ -25,3 +25,7 @@
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=dhyunii96&theme=radical)
 
 
+npx create-react-app ex2 --template typescript
+npm i chance luxon @fontsource/material-icons
+npm i -D @types/chance @types/luxon
+npm i -D postcss autoprefixer tailwindcss@3.4.17  @tailwindcss/line-clamp daisyuic
