@@ -26,6 +26,7 @@
 
 
 npx create-react-app ex2 --template typescript
+
 npm i chance luxon @fontsource/material-icons
 npm i -D @types/chance @types/luxon
-npm i -D postcss autoprefixer tailwindcss@3.4.17  @tailwindcss/line-clamp daisyuic
+npm i -D postcss autoprefixer tailwindcss@3.4.17  @tailwindcss/line-clamp daisyui
