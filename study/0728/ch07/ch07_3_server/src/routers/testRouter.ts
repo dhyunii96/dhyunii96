@@ -1,26 +1,64 @@
-import { Router } from "express";
+import type {MongoDB} from '../mongodb'
+import {Router} from 'express'
 
 export const testRouter = (...args: any[]) => {
-  const router = Router();
+  const db: MongoDB = args[0]
+  const test = db.collection('test')
+  const router = Router()
   return router
-    .get("/", (req, res) => {
-      res.json({ ok: true });
+    .get('/', async (req, res) => {
+      try {
+        const findResult = await test.find({}).toArray()
+        res.json({ok: true, body: findResult})
+      } catch (e) {
+        if (e instanceof Error) res.json({ok: false, errorMessage: e.message})
+      }
     })
-    .get("/:id", (req, res) => {
-      const { id } = req.params;
-      res.json({ ok: true });
+    .get('/:id', async (req, res) => {
+      const {id} = req.params
+      try {
+        const findResult = await test.findOne({id})
+        res.json({ok: true, body: findResult})
+      } catch (e) {
+        if (e instanceof Error) res.json({ok: false, errorMessage: e.message})
+      }
     })
-    .post("/", (req, res) => {
-      const { body } = req;
-      res.json({ ok: true, body });
+    .post('/', async (req, res) => {
+      const {body} = req
+      try {
+        try {
+          await test.drop() //
+        } catch (e) {}
+
+        const insertResult = await test.insertOne({id: '1234', ...body})
+        const {insertedId} = insertResult
+        const findResult = await test.findOne({_id: insertedId})
+        res.json({ok: true, body: findResult})
+      } catch (e) {
+        if (e instanceof Error) res.json({ok: false, errorMessage: e.message})
+      }
     })
-    .put("/:id", (req, res) => {
-      const { id } = req.params;
-      const { body } = req;
-      res.json({ ok: true, body, id });
+    .put('/:id', async (req, res) => {
+      const {id} = req.params
+      const {body} = req
+      try {
+        const updateResult = await test.findOneAndUpdate(
+          {id},
+          {$set: body},
+          {returnDocument: 'after'}
+        )
+        res.json({ok: true, body: updateResult && updateResult})
+      } catch (e) {
+        if (e instanceof Error) res.json({ok: false, errorMessage: e.message})
+      }
     })
-    .delete("/:id", (req, res) => {
-      const { id } = req.params;
-      res.json({ ok: true, id });
-    });
-};
+    .delete('/:id', async (req, res) => {
+      const {id} = req.params
+      try {
+        await test.deleteOne({id})
+        res.json({ok: true, id})
+      } catch (e) {
+        if (e instanceof Error) res.json({ok: false, errorMessage: e.message})
+      }
+    })
+}

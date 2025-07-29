@@ -1,1 +1,1 @@
-export * from "./makeDir";
+export * from './makeDir'
